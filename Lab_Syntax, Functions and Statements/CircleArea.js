@@ -6,4 +6,3 @@ function findArea(a) {
         console.log(`We can not calculate the circle area, because we receive a ${varType}.`);
     }
 }
-findArea('abc');
