@@ -22,5 +22,3 @@ function calcuate(num1, num2, operator) {
     }
     console.log(result);
 }
-
-calcuate(5, 6, '+');
