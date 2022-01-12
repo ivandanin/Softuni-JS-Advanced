@@ -7,4 +7,3 @@ function sum(n, m) {
     }
     console.log(result);
 }
-sum('1', '5');
