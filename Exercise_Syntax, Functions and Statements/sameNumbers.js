@@ -14,4 +14,3 @@ function checkNumbers(input) {
     console.log(check);
     console.log(sum);
 }
-checkNumbers(22422);
