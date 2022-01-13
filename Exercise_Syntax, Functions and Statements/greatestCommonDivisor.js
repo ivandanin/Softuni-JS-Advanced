@@ -8,5 +8,3 @@ function findGCD(a, b) {
     }    
     console.log(a);
 }
-
-findGCD(2154, 458);
