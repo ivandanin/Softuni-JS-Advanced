@@ -1,25 +1,12 @@
 function check(x1, y1, x2, y2) {
+
+    result(x1, y1, 0, 0);
+    result(x2, y2, 0, 0);
+    result(x1, y1, x2, y2);
+
+    function result(x1, y1, x2, y2) {
     let distance = Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
-    if (Number.isInteger(Math.sqrt((0 - x1)**2 + (0 - y1)**2))) {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is valid`);
-
-    } else {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is not valid`);
-
-    }
-    if (Number.isInteger(Math.sqrt((x2 - 0)**2 + (y2 - 0)**2))) {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is valid`);
-
-    } else {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is not valid`);
-
-    }
-    if (Number.isInteger(distance)) {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is valid`);
-
-    } else {
-        console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is not valid`);
-
+    let valid = Number.isInteger(distance) ? 'valid' : 'invalid';
+    console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is ${valid}`);
     }
 }
-check(2, 1, 1, 1);
