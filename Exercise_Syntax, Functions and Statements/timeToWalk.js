@@ -10,4 +10,3 @@ function calculate(steps, footPrint, kmPerH) {
 
     console.log(`${hours}:${mins}:${secs}`);
 }
-calculate(2564, 0.70, 5.5);
