@@ -8,5 +8,3 @@ function printEvenElements(input) {
     }
     console.log(result);
 }
-
-printEvenElements(['20', '30', '40', '50', '60']);
