@@ -13,4 +13,3 @@ for (let index = 0; index < newArr.length; index++) {
     console.log(element);
 }
 }
-check([7, -2, 8, 9]);
