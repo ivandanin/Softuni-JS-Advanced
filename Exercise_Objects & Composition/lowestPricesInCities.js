@@ -3,7 +3,7 @@ function findLowestPrice(array) {
     
     while(array.length > 0) {
         let [town, product, price] = array.shift().split(' | ');
-
+ 
         if (products.filter(x => x.product === product).length > 0) {
             let obj = products.find(x => x.product === product);
 
