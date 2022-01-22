@@ -1,0 +1,17 @@
+body {
+    font-family: "Helvetica",
+    sans-serif;
+    background: #FAEBC8;
+}
+
+main article {
+    width: 270px;
+    display: inline-block;
+    padding: 30px 60px;
+}
+main article.column {
+    flex: 33.3%;
+    height: 200px;
+    padding: 10px;
+    margin: 5px;
+}
