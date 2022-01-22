@@ -1,7 +1,19 @@
 body {
     font-family: "Helvetica",
     sans-serif;
+    width: 1180px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 250px;
     background: #FAEBC8;
+}
+
+main {
+    background: white;
+    box-shadow: red;
+    background-size: cover;
+    padding-top: 80px;
+    border-radius: 25px;
 }
 
 main article {
@@ -9,9 +21,18 @@ main article {
     display: inline-block;
     padding: 30px 60px;
 }
-main article.column {
-    flex: 33.3%;
-    height: 200px;
-    padding: 10px;
-    margin: 5px;
+main article h2 {
+	text-align: center;
+}
+
+img {
+    width: 30%;
+    margin: auto;
+    display: block;
+}
+p.author {
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(175, 62, 62);
+    text-shadow:10px 20px #817777;
 }
