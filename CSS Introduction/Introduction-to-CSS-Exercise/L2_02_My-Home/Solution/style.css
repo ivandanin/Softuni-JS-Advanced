@@ -1,0 +1,23 @@
+body {
+    font-family: "Open Sans"
+    sans-serif;
+    font-size: 20px;
+}
+
+article {
+    width: 270px;
+    display: inline-block;
+    padding: 30px 30px;
+    padding: auto;
+}
+h2 {
+    border-left: 2px solid black;
+    height: 150px;
+    padding: 30px;
+    position: relative;
+    margin-left: -3px;
+}
+
+p {
+    color: #656565;
+}
