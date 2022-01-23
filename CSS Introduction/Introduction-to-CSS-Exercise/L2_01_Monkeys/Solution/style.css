@@ -1,27 +1,29 @@
 body {
     font-family: "Helvetica",
     sans-serif;
-    width: 1180px;
+    font-size: 20px;
+    width: 1280px;
     margin: 0 auto;
     padding: 0;
-    padding-top: 250px;
+    padding-top: 210px;
     background: #FAEBC8;
 }
 
-main {
+section {
     background: white;
-    box-shadow: red;
+    box-shadow: 1px 1px 10px 0px red;
     background-size: cover;
     padding-top: 80px;
     border-radius: 25px;
 }
 
-main article {
+article {
     width: 270px;
     display: inline-block;
     padding: 30px 60px;
 }
-main article h2 {
+
+h2 {
 	text-align: center;
 }
 
@@ -34,5 +36,5 @@ p.author {
     font-style: italic;
     font-weight: bold;
     color: rgb(175, 62, 62);
-    text-shadow:10px 20px #817777;
+    text-shadow:10px 20px 3px#817777 ;
 }
