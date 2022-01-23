@@ -1,0 +1,41 @@
+
+body {
+    font-family: "Lato",
+    sans-serif;
+    width: 1180px;
+    margin: auto;
+    padding: auto;
+    padding-top: 180px;    
+}
+
+section {
+    border-radius: 25px;
+    display: inline-block;
+}
+
+.left {
+    background: url(peak.jpg) ;
+    color: rgb(255, 255, 255);
+}
+
+.right {
+    
+}
+
+label {
+    color: rgb(218, 217, 220);
+}
+
+input {
+    color: rgb(118, 115, 115);
+}
+
+.gs {
+    border-color: #38082A;
+    background-color: #38082A;
+    color: white;
+}
+
+.sign {
+    background-color: white;
+}
