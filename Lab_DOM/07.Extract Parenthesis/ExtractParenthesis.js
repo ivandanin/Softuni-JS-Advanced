@@ -1,5 +1,5 @@
 function extract(content) {
-    let par = document.getElementById(elementId).textContent;
+    let par = document.getElementById('content').textContent;
     let pattern = /\(([^)]+)\)/g;
     let result = [];
 
