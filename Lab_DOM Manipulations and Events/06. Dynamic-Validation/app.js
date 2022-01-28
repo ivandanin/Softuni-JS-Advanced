@@ -1,8 +1,14 @@
 function validate() {
-    let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    let email = document.getElementById('email').textContent;
+    let regex = /[a-z]+@[a-z]+.[a-z]+/;
+    let email = document.getElementById('email');
 
-    if(!email.match(regex)) {
-        document.getElementById('email').className = '.error';
+    email.addEventListener('change', func)
+    
+    function func(event){
+        if(regex.test(email.value)) {
+            event.target.classList.remove('error');
+        } else {
+            event.target.classList.add('error');
+        }
     }
 }
