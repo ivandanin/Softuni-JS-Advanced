@@ -3,9 +3,9 @@ function print(array) {
     let result = [];
 
     for (const element of array) {
-        let el = element.split(' ');
-        let func = el[0];
-        let string = el[1];
+        let tokens = element.split(' ');
+        let func = tokens[0];
+        let string = tokens[1];
 
         switch(func) {
             case 'add':
