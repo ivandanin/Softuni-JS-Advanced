@@ -18,4 +18,4 @@ function displayArguments() {
 
 }
 
-displayArguments('cat', 'kur', 'jip', 42, function() {console.log('Hello world!');}, function() {console.log('Hello world!');})
+displayArguments('cat', 42, function() {console.log('Hello world!');});
