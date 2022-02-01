@@ -1,20 +1,20 @@
 function calculator() {
-    let firstSelector;
-    let secondSelector;
+    let num1;
+    let num2;
     let result;
 
     function init(selector1, selector2, resultSelector) {
-        firstSelector = document.querySelector(selector1);
-        secondSelector = document.querySelector(selector2);
+        num1 = document.querySelector(selector1);
+        num2 = document.querySelector(selector2);
         result = document.querySelector(resultSelector);
     }
     
     function add() {
-        result.value = Number(firstSelector.value) + Number(secondSelector.value);
+        result.value = Number(num1.value) + Number(num2.value);
     }
     
     function subtract() {
-        result.value = Number(firstSelector.value) - Number(secondSelector.value);
+        result.value = Number(num1.value) - Number(num2.value);
     }
 
     return {
