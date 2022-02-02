@@ -8,7 +8,7 @@ function createDeck(cards) {
         try {
             result.push(createCard(face, suit));
         } catch(error) {
-            console.log('Invalid card' + card);
+            console.log('Invalid card: ' + card);
             return;
         }
     }
