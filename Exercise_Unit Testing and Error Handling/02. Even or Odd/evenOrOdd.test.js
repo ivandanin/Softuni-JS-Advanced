@@ -17,4 +17,4 @@ describe('Check if the number is even or odd', () => {
     it('shouldReturnOdd', () => {
         expect(isOddOrEven('3')).to.be.equal('odd');
     }); 
-})
+});
