@@ -8,10 +8,10 @@ describe('Sum Checker', () => {
     });
     
     it('shouldReturnNaNIfArrayContainsString', () => {
-        expect(sum[1, 'a', 2]).to.be.NaN;
+        expect(sum([1, 'a', 2])).to.be.NaN;
     });
 
     it('shouldReturnNaNIfArrayContainsOnlyStrings', () => {
-        expect(sum['a', 'b', 'c']).to.be.NaN;
+        expect(sum(['a', 'b', 'c'])).to.be.NaN;
     });
 });
