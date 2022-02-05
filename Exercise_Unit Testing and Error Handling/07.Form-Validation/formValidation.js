@@ -53,7 +53,7 @@ function validate() {
             passwordElement.style.borderColor = '';
         }
 
-        if (companyElement == '' && 
+        if (companyNumberElement == '' && 
         companyElement.checked) {
             companyNumberElement.style.borderColor = 'red';
         } else {
