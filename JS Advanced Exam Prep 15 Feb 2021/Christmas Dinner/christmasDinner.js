@@ -38,30 +38,23 @@ class ChristmasDinner {
     }
 
     inviteGuests(name, dish) {
-        if (!this.dishes.includes(dish)) {
+        if (this.dishes.includes(dish)) {
             throw new Error('We do not have this dish');
         }
-        if (!this.guests.includes(name)) {
-            throw new Error('This guest has already been invited')
+        if (this.guests[name]) {
+            throw new Error('This guest has already been invited');
         }
         this.guests[name] = dish;
         return `You have successfully invited ${name}!`;
     }
 
     showAttendance() {
-        let output = '';
-        Object.keys(this.guests).forEach(guest => {
-            let dish = this.guests[guest];
-            let products = [];
-
-            this.dishes.forEach(currDish => {
-                if (currDish.recipeName === currDish) {
-                    products = currDish.productsList;
-                }
-            });
-            output += `${guest} will eat ${dish}, which consists of ${products.join(', ')}\n;`
+        let output = [];
+        
+        Object.entries(this.guests).forEach(([guestName, dish]) => {
+            output.push(`${guestName} will eat ${dish}, which consists of ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}`)
         });
-        return output;
+        return output.join('\n');
     }
 }
 
