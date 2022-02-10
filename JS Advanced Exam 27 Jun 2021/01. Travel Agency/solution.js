@@ -19,7 +19,6 @@ function solution() {
         if(!fNameElement || !emailElement) {
             return;
         }
-        submitBtn.disabled = true;
         
         let fNameLi = document.appendChild('li');
         let emailLi = document.appendChild('li');
@@ -47,6 +46,7 @@ function solution() {
            addressElement,
             postCodeElement = '';
         
+        submitBtn.disabled = true;
 
         let editBtn = document.getElementById('editBTN');
         let continueBtn = document.getElementById('continueBTN');
@@ -68,7 +68,7 @@ function solution() {
             addressElement = addressLi;
             postCodeElement = Number(postCodeLi);
 
-            submitBtn.disabled = false;
+            submitBtn.disabled = true;
             editBtn.disabled = true;
             continueBtn.disabled = true;
         });
