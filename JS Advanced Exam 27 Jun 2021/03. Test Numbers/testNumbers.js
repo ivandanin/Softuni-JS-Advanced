@@ -6,7 +6,7 @@ const testNumbers = {
             return undefined;
         } else {
             sum = (num1 + num2).toFixed(2);
-            return sum
+            return sum;
         }
     },
     numberChecker: function (input) {
