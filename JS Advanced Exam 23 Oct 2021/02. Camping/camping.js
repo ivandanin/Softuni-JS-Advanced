@@ -18,10 +18,10 @@ class SummerCamp {
     
             if (this.listOfParticipants.map(p => p.name).includes(name)) {
                 return `The ${name} is already registered at the camp.`;
-            }
-        
-            if (this.priceForTheCamp[condition] > money) {
+
+            } else if (this.priceForTheCamp[condition] > money) {
                 return 'The money is not enough to pay the stay at the camp.';
+                
             } else {
             
             this.listOfParticipants
@@ -51,11 +51,11 @@ class SummerCamp {
         
         switch (typeOfGame) {
             case 'WaterBalloonFights':
-        if (first && second) {
+            if (first && second) {
         
-        if (first.condition !== second.condition) {
-            throw new Error('Choose players with equal condition.');
-        }
+            if (first.condition !== second.condition) {
+                throw new Error('Choose players with equal condition.');
+            }
 
                 if (first.power > second.power) {
                     first.wins++;
@@ -64,28 +64,29 @@ class SummerCamp {
                 } else if (second.power > first.power) {
                     second.wins++;
                     return `The ${second.name} is winner in the game ${typeOfGame}.`;
+
                 } else {
                     return 'There is no winner.';
                 }
-        } else {
-            throw new Error('Invalid entered name/s.');
-        }
-        case 'Battleship':
-            if (first) {
-                first.power += 20;
-                return `The ${participant1} successfully completed the game ${typeOfGame}.`;
             } else {
                 throw new Error('Invalid entered name/s.');
             }
-        }    
-    }
+            case 'Battleship':
+                if (first) {
+                    first.power += 20;
+                    return `The ${participant1} successfully completed the game ${typeOfGame}.`;
+                } else {
+                    throw new Error('Invalid entered name/s.');
+                }
+            }    
+        }
 
     toString() {
-        let result = `${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}`;
+        let result = `${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}\n`;
 
         result += this.listOfParticipants
                         .sort((a,b) => b.wins - a.wins)
-                        .map(e => `${e.name} - ${e.condition} - ${e.power} - ${e.wins}`)
+                        .map(p => `${p.name} - ${p.condition} - ${p.power} - ${p.wins}`)
                         .join('\n');
 
         return result;
