@@ -62,10 +62,10 @@ function solve() {
 
                 songContainerElement.appendChild(divElement);
 
-                genreElement = '';
-                songNameElement = '';
-                authorElement = '';
-                creationDateElement = '';
+                genreElement.value = '';
+                songNameElement.value = '';
+                authorElement.value = '';
+                creationDateElement.value = '';
         }
     });
 
