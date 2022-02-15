@@ -26,21 +26,36 @@ describe("Tests …", () => {
         it('shouldThrowAnError', () => {
             expect(() => (instance.getId(1))).to.throw(Error, 'Entity with id: 1 does not exist!');
         });
-        
-        it('shouldReturnTheID', () => {
-            expect(instance.getId(1)).to.be.equals(`{name: 'Pesho', age: 22, birthday: Wed Jan 07 1998 00:00:00 GMT+0200 (Eastern European Standard Time)}`);
-        })
     });
-
+    
     describe('Test update function', () => {
         it('shouldThrowAnError', () => {
             expect(() => instance.update(0, {})).to.throw(Error, 'Entity with id: 0 does not exist!');
         });
+        
+        it('shouldThrowAnTypeErrorBecauseOfNumberInsteadOfName', () => {
+            instance.add({ name: '', age: 0, birthday: {}, })
+            expect(() => instance.update(0, {name: 1, age: 1, birthday: {}})).to.throw(TypeError);
+        })
     });
-
+    
     describe('Test del function', () => {
         it('shouldThrowAnError', () => {
             expect(() => instance.del(0)).to.throw(Error, 'Entity with id: 0 does not exist!');
+            expect(() => instance.del(-1)).to.throw(Error, 'Entity with id: -1 does not exist!');
+        });
+        
+        it('shouldDeleteIndex', () => {
+            instance.add({name: '', age: 1, birthday: {}});
+            instance.add({name: '', age: 1, birthday: {}});
+            instance.del(1);
+            expect(instance.data.has(1)).to.be.equals(false);
+        });
+    });
+
+    describe('test count properties', () => {
+        it('shouldReturnTheCountOfProperties', () => {
+            expect(instance.count).to.be.equal(0);
         });
     });
 });
