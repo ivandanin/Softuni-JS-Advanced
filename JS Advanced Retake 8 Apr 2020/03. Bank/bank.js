@@ -6,8 +6,12 @@ class Bank {
     }
 
     newCustomer({firstName, lastName, personalId}) {
-        
-        if (this.allCustomers.hasOwnProperty({firstName, lastName, personalId})) {
+
+        let customer = this.allCustomers.find(customer => {
+            return customer.firstName === firstName ||
+        customer.lastName === lastName});
+
+        if (customer) {
             throw new Error(`${firstName} ${lastName} is already our customer!`);
         }
         this.allCustomers.push({firstName, lastName, personalId});
@@ -64,11 +68,12 @@ class Bank {
         
         reversed.forEach(t => result += (count--) + '. ' + t);
 
-        return result;
+        return result.trim();
     }
 }
 let bank = new Bank('SoftUni Bank');
 
+console.log(bank.newCustomer({firstName: 'Svetlin', lastName: 'Nakov', personalId: 6233267}));
 console.log(bank.newCustomer({firstName: 'Svetlin', lastName: 'Nakov', personalId: 6233267}));
 console.log(bank.newCustomer({firstName: 'Mihaela', lastName: 'Mileva', personalId: 4151596}));
 
