@@ -56,11 +56,11 @@ class ArtGallery {
             throw new Error('This article is not found.');
         } 
 
-        if (this.listOfArticles.quantity == 0) {
+        if (article.quantity == 0) {
             return `The ${articleName} is not available.`;
         }
 
-        if (this.guests[guestName]) {
+        if (!guest) {
             return 'This guest is not invited.';
         } 
 
@@ -111,15 +111,16 @@ class ArtGallery {
 
 
 const artGallery = new ArtGallery('Curtis Mayfield');
-artGallery.addArticle('picture', 'Mona Liza', 3);
+artGallery.addArticle('picture', 'Mona Liza', 0);
 artGallery.addArticle('Item', 'Ancient vase', 2);
-artGallery.addArticle('picture', 'Mona Liza', 1);
+artGallery.addArticle('picture', 'Mona Liza', 0);
 artGallery.inviteGuest('John', 'Vip');
 artGallery.inviteGuest('Peter', 'Middle');
 console.log(artGallery.buyArticle('picture', 'Mona Liza', 'John'));
 console.log(artGallery.buyArticle('item', 'Ancient vase', 'Peter'));
 // console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
 
+console.log(artGallery.showGalleryInfo('article'));
 console.log(artGallery.showGalleryInfo('guest'));
 // // John successfully purchased the article worth 200 points.
 // // Peter successfully purchased the article worth 250 points. 
