@@ -50,6 +50,7 @@ class ArtGallery {
 
     buyArticle(articleModel, articleName, guestName) {
         let article = this.listOfArticles.find(p => p.articleName === articleName);
+        let guest = this.guests.find(x => x.guestName == guestName);
         
         if (!article || article.articleModel != articleModel) {
             throw new Error('This article is not found.');
@@ -63,27 +64,30 @@ class ArtGallery {
             return 'This guest is not invited.';
         } 
 
-        this.guests.points < this.possibleArticles[articleModel]
+        guest.points < this.possibleArticles[articleModel]
         ? 'You need to more points to purchase the article.'
-        : this.guests.points -= this.possibleArticles[articleModel]
-        this.guests.purchaseArticle++;
+        : guest.points -= this.possibleArticles[articleModel]
+        guest.purchaseArticle++
+        article.quantity--;
 
         return `${guestName} successfully purchased the article worth ${this.possibleArticles[articleModel]} points.`;
     }
 
     showGalleryInfo(criteria) {
-        let result = [];
         switch (criteria) {
             case 'article':
-                result.push('Articles information:');
+                let articleResult = [];
+                articleResult.push('Articles information:');
                 this.listOfArticles
-                .forEach(a => result.push(`${a.articleModel} - ${a.articleName} - ${a.quantity}`));
+                .forEach(a => articleResult.push(`${a.articleModel} - ${a.articleName} - ${a.quantity}`));
+                return articleResult.join('\n');
 
             case 'guest':
-                result.push('Guests information:');
-                this.guests.forEach(g => result.push(`${g.guestName} - ${g.purchaseArticle}`));
+                let guestResult = [];
+                guestResult.push('Guests information:');
+                this.guests.forEach(g => guestResult.push(`${g.guestName} - ${g.purchaseArticle}`));
+                return guestResult.join('\n');
             }
-            return result.join('\n');
     }
 }
 // const artGallery = new ArtGallery('Curtis Mayfield');
@@ -114,8 +118,9 @@ artGallery.inviteGuest('John', 'Vip');
 artGallery.inviteGuest('Peter', 'Middle');
 console.log(artGallery.buyArticle('picture', 'Mona Liza', 'John'));
 console.log(artGallery.buyArticle('item', 'Ancient vase', 'Peter'));
-console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
+// console.log(artGallery.buyArticle('item', 'Mona Liza', 'John'));
 
+console.log(artGallery.showGalleryInfo('guest'));
 // // John successfully purchased the article worth 200 points.
 // // Peter successfully purchased the article worth 250 points. 
 // // This article is not found.
