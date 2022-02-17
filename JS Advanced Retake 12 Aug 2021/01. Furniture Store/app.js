@@ -40,11 +40,13 @@ function solve() {
                         let buttonsTd = document.createElement('td');
                         
                         modelTd.textContent = `${modelElement.value}`; 
-                        yearTd.textContent = `${yearElement.value}`;
-                        descriptionTd.textContent = `${descriptionElement.value}`;
+                        yearTd.textContent = `Year: ${yearElement.value}`;
+                        descriptionTd.textContent = `Description: ${descriptionElement.value}`;
+                        descriptionTd.colSpan = '3';
                         priceTd.textContent = `${priceElement.value}`;
 
                         let moreInfoBtn = document.createElement('button');
+                        moreInfoBtn.className = 'moreBtn';
                         moreInfoBtn.textContent = 'More Info';
                         buttonsTd.appendChild(moreInfoBtn);
 
@@ -63,18 +65,29 @@ function solve() {
                         });
 
                         let buyBtn = document.createElement('button');
-                        buyBtn.textContent = 'Buy It';
+                        buyBtn.className = 'buyBtn';
+                        buyBtn.textContent = 'Buy it';
                         buttonsTd.appendChild(buyBtn);
+
+                        buyBtn.addEventListener('click', (event) => {
+                            let info = event.target.parentNode.parentNode;
+                            let totalPrice = document.querySelector('.total-price');
+                            let price = Number(info.querySelector(':nth-child(2)').textContent);
+                            trInfoElement.remove();
+                            trHideElement.remove();
+                            totalPrice.textContent = (Number(totalPrice.textContent) + price).toFixed(2);
+                        });
                         
                         trInfoElement.appendChild(modelTd);
                         trInfoElement.appendChild(priceTd);
-                        trInfoElement.appendChild(moreInfoBtn);
-                        trInfoElement.appendChild(buyBtn);
+                        trInfoElement.appendChild(buttonsTd);
 
                         trHideElement.appendChild(yearTd);
                         trHideElement.appendChild(descriptionTd);
 
+
                         tableBody.appendChild(trInfoElement);
+                        tableBody.appendChild(trHideElement);
 
                         modelElement.value = '';
                         descriptionElement.value = '';
