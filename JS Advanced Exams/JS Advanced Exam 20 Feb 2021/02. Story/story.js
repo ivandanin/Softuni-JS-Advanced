@@ -2,7 +2,7 @@ class Story {
     constructor(title, creator) {
         this.title = title;
         this.creator = creator;
-        this.comments = [];
+        this._comments = [];
         this._likes = [];
     }
 
@@ -25,7 +25,7 @@ class Story {
             throw new Error(`You can't like your own story!`);
         } else {
             this._likes.push(username);
-            return `${username} liked ${this.title}`;
+            return `${username} liked ${this.title}!`;
         }
     }
     
@@ -39,25 +39,95 @@ class Story {
     }
 
     comment(username, content, id) {
-        
+        let comment = {
+            id,
+            username,
+            content,
+            replies: []
+        };
+
+        let findCommentById = this._comments.find(c => c.id == id);
+
+        if (findCommentById) {
+            let replyId = Number(findCommentById.id + '.' + (findCommentById.replies.length + 1));
+            let reply = {
+                id: replyId, 
+                username, 
+                content
+            };
+
+            findCommentById.replies.push(reply);
+            return 'You replied successfully';
+        }
+
+        comment.id = this._comments.length + 1;
+        this._comments.push(comment);
+        return `${username} commented on ${this.title}`;
+    }
+
+    toString(sortingType) {
+        let result = [];
+        result.push(`Title: ${this.title}`);
+        result.push(`Creator: ${this.creator}`);
+        result.push(`Likes: ${this._likes.length}`);
+        result.push('Comments:');
+
+        if (this._comments.length > 0) {
+            let sortedComments = this._sortCriteria(this._comments, sortingType);
+            result.push(this._sortThem(sortedComments, sortingType));
+ 
+            return result.join('\n');
+        }
+    }
+ 
+    _sortCriteria(commentsOrReplies, criteria) {
+        let copyCommentsOrReplies = commentsOrReplies.slice();
+        let sortedCommentsOrReplies = null;
+ 
+        if (criteria === 'asc') {
+            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => a.id - b.id);
+        } else if (criteria === 'desc') {
+            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => b.id - a.id);
+        } else if (criteria === 'username') {
+            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => a.username.localeCompare(b.username));
+        }
+ 
+ 
+        return sortedCommentsOrReplies;
+    }
+ 
+    _sortThem(sortedComments, criteria) {
+        let commentAndReplies = [];
+ 
+        for (let comment of sortedComments) {
+            commentAndReplies.push(`-- ${comment.id}. ${comment.username}: ${comment.content}`);
+ 
+            if (comment.replies.length > 0) {
+                let sortedReplies = this._sortCriteria(comment.replies, criteria);
+                sortedReplies.forEach(r => commentAndReplies.push(`--- ${r.id}. ${r.username}: ${r.content}`));
+            }
+ 
+        }
+        return commentAndReplies.join('\n');
     }
 }
+
 
 let art = new Story("My Story", "Anny");
 art.like("John");
 console.log(art.likes);
 art.dislike("John");
 console.log(art.likes);
-// art.comment("Sammy", "Some Content");
-// console.log(art.comment("Ammy", "New Content"));
-// art.comment("Zane", "Reply", 1);
-// art.comment("Jessy", "Nice :)");
-// console.log(art.comment("SAmmy", "Reply@", 1));
-// console.log()
-// console.log(art.toString('username'));
-// console.log()
-// art.like("Zane");
-// console.log(art.toString('desc'));
+art.comment("Sammy", "Some Content");
+console.log(art.comment("Ammy", "New Content"));
+art.comment("Zane", "Reply", 1);
+art.comment("Jessy", "Nice :)");
+console.log(art.comment("SAmmy", "Reply@", 1));
+console.log()
+console.log(art.toString('username'));
+console.log()
+art.like("Zane");
+console.log(art.toString('desc'));
 
 // // John likes this story!
 // // My Story has 0 likes
