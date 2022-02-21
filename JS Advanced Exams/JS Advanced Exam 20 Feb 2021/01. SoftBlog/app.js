@@ -4,8 +4,9 @@ function solve(){
    let categoryEl = document.getElementById('category');
    let contentEl = document.getElementById('content');
 
-   let createBtn = document.querySelector('.btn create');
-   createBtn.addEventListener('click', () => {
+   let createBtn = document.querySelector('form > button');
+   createBtn.addEventListener('click', (event) => {
+      event.preventDefault();
       let postsSection = document.querySelector('.site-content :nth-child(2)');
       let articleEl = document.createElement('article');
 
@@ -49,6 +50,11 @@ function solve(){
          
          articleEl.appendChild(buttonsDiv);
          postsSection.appendChild(articleEl);
+
+         titleEl.value = '';
+         categoryEl.value = '';
+         creatorEl.value = '';
+         contentEl.value = '';
          }
    });
 }
