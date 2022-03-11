@@ -5,9 +5,9 @@ class Story {
         this._comments = [];
         this._likes = [];
     }
-
+    
     get likes() {
-        if (this._likes.length == 0) {
+        if (this._likes.length <= 0) {
             return `${this.title} has 0 likes`;
         } else if (this._likes.length == 1) {
             return `${this._likes[0]} likes this story!`;
@@ -15,56 +15,51 @@ class Story {
             return `${this._likes[0]} and ${this._likes.length - 1} others like this story!`;
         }
     }
-
+    
     like(username) {
         if (this._likes.includes(username)) {
             throw new Error(`You can't like the same story twice!`);
         } 
-        
-        if (username == this.creator) {
+        if (this.creator == username) {
             throw new Error(`You can't like your own story!`);
-        } else {
-            this._likes.push(username);
-            return `${username} liked ${this.title}!`;
-        }
+        } 
+        this._likes.push(username);
+        return `${username} liked ${this.title}!`;
     }
     
     dislike(username) {
         if (!this._likes.includes(username)) {
             throw new Error(`You can't dislike this story!`);
-        } 
-        
-            this._likes = this._likes.filter(u => u != username);
-            return `${username} disliked ${this.title}`;
+        }
+        this._likes = this._likes.filter(u => u != username);
+        return `${username} disliked ${this.title}`;
     }
 
     comment(username, content, id) {
         let comment = {
-            id,
+            id, 
             username,
-            content,
+            content, 
             replies: []
-        };
-
-        let findCommentById = this._comments.find(c => c.id == id);
-
-        if (findCommentById) {
-            let replyId = Number(findCommentById.id + '.' + (findCommentById.replies.length + 1));
-            let reply = {
-                id: replyId, 
-                username, 
-                content
-            };
-
-            findCommentById.replies.push(reply);
-            return 'You replied successfully';
         }
 
+        let findId = this._comments.find(c => c.id == id);
+
+        if (findId) {
+            let replyId = Number(findId.id + '.' + (findId.replies.length + 1));
+            let reply = {
+                id: replyId,
+                username,
+                content
+            }
+            findId.replies.push(reply);
+            return 'You replied successfully';
+        }
         comment.id = this._comments.length + 1;
         this._comments.push(comment);
         return `${username} commented on ${this.title}`;
     }
-
+    
     toString(sortingType) {
         let result = [];
         result.push(`Title: ${this.title}`);
@@ -73,40 +68,42 @@ class Story {
         result.push('Comments:');
 
         if (this._comments.length > 0) {
-            let sortedComments = this._sortCriteria(this._comments, sortingType);
+            let sortedComments = this._sortingCriteria(this._comments, sortingType);
             result.push(this._sortThem(sortedComments, sortingType));
- 
+
             return result.join('\n');
         }
     }
- 
-    _sortCriteria(commentsOrReplies, criteria) {
-        let copyCommentsOrReplies = commentsOrReplies.slice();
-        let sortedCommentsOrReplies = null;
- 
-        if (criteria === 'asc') {
-            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => a.id - b.id);
-        } else if (criteria === 'desc') {
-            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => b.id - a.id);
-        } else if (criteria === 'username') {
-            sortedCommentsOrReplies = copyCommentsOrReplies.sort((a, b) => a.username.localeCompare(b.username));
+
+    _sortingCriteria(commentsOrReplies, criteria) {
+        let cOrR = commentsOrReplies.slice();
+        let sorted = null;
+
+        switch (criteria) {
+            case 'asc':
+                sorted = cOrR.sort((a, b) => a.id - b.id);
+                break;
+            case 'desc':
+                sorted = cOrR.sort((a, b) => b.id - a.id);
+                break;
+            case 'username':
+                sorted = cOrR.sort((a, b) => a.username.localeCompare(b.username));
+                break;
         }
- 
- 
-        return sortedCommentsOrReplies;
+        return sorted;
     }
- 
+
     _sortThem(sortedComments, criteria) {
         let commentAndReplies = [];
- 
+
         for (let comment of sortedComments) {
             commentAndReplies.push(`-- ${comment.id}. ${comment.username}: ${comment.content}`);
- 
+
             if (comment.replies.length > 0) {
-                let sortedReplies = this._sortCriteria(comment.replies, criteria);
+                let sortedReplies = this._sortingCriteria(comment.replies, criteria);
                 sortedReplies.forEach(r => commentAndReplies.push(`--- ${r.id}. ${r.username}: ${r.content}`));
             }
- 
+
         }
         return commentAndReplies.join('\n');
     }
