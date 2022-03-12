@@ -31,7 +31,6 @@ const numberOperations = {
         return resultArr
     }
 };
-
 module.exports = {numberOperations};
 
 console.log(numberOperations.sumArrays([1, 2, 3], [1, 2, 3]));

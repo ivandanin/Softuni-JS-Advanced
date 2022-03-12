@@ -1,5 +1,5 @@
 {
-  "name": "js-advanced-exam-20-feb-2021",
+  "name": "js-advanced-exams-re",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.3.6",
-    "mocha": "^9.2.0"
+    "mocha": "^9.2.1"
   }
 }
